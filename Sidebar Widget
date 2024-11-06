@@ -1,0 +1,32 @@
+Step 1: Register the Sidebar
+Add the following code to your theme's functions.php file. This code registers a new sidebar area called "Custom Sidebar".
+php
+<?php
+function my_custom_sidebar() {
+    register_sidebar(array(
+        'name'          => __('Custom Sidebar', 'your-theme-domain'),
+        'id'            => 'custom-sidebar',
+        'description'   => __('A custom sidebar for your theme.', 'your-theme-domain'),
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ));
+}
+add_action('widgets_init', 'my_custom_sidebar');
+?>
+
+Step 2: Display the Sidebar
+To display the registered sidebar in your theme, you need to add the following code where you want the sidebar to appear, typically in a template file like sidebar.php or page.php.
+php
+<?php if (is_active_sidebar('custom-sidebar')) : ?>
+    <aside id="secondary" class="widget-area">
+        <?php dynamic_sidebar('custom-sidebar'); ?>
+    </aside>
+<?php endif; ?>
+
+Step 3: Usage
+Upload Code: Add this code to your WordPress theme or create a new plugin.
+Activate Sidebar: Go to the WordPress admin panel under Appearance > Widgets and you will see "Custom Sidebar" available for use.
+Add Widgets: Drag and drop widgets into your new sidebar.
+This setup allows you to create a flexible and customizable sidebar in WordPress, enabling you to add various widgets as needed. You can now upload this code to GitHub as part of your project repository.
